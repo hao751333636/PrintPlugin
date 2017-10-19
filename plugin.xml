@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 插件的Id，安装后注册的Id为此id加js-moudle的name属性,即cordova_plugins.js里的id属性 -->
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    id="com.print.printer" version="0.0.1">
+    <!-- 插件名称 -->
+    <name>PrintPlugin</name>
+    <!-- 插件描述 -->
+    <description>Description</description>
+    <!-- js文件的地址，安装后路径为：plugins/插件Id/src属性值 -->
+    <js-module name="CustomPrint" src="www/print.js">
+    <!-- 跟asserts/cordova_plugins.js中填clobbers的值一样 -->
+        <clobbers target="printText"/>
+    </js-module>
+    <!-- android -->
+    <platform name="android">
+        <config-file parent="/*" target="res/xml/config.xml">
+        <!-- config-file中包含的这段会原封不动的插入到config.xml文件中 -->
+          
+          <feature name="CustomPrint">
+            <param name="android-package" value="com.print.printer.CustomPrint" />
+          </feature>
+
+        </config-file>
+        <!-- 本地代码，有多个文件就写多个source-file，src对应本项目，target对应安装后的目录 -->
+        <source-file src="src/android/CustomPrint.java" target-dir="src/com/print/printer"/>
+        <source-file src="src/android/ClubMsrInterface.java" target-dir="src/cn/koolcloud/jni"/>
+        <source-file src="src/android/ClubPinPadInterface.java" target-dir="src/cn/koolcloud/jni"/>
+        <source-file src="src/android/ContactlessEvent.java" target-dir="src/cn/koolcloud/jni"/>
+        <source-file src="src/android/ContactlessInterface.java" target-dir="src/cn/koolcloud/jni"/>
+        <source-file src="src/android/IntegratedCardInterface.java" target-dir="src/cn/koolcloud/jni"/>
+        <source-file src="src/android/PrinterInterface.java" target-dir="src/cn/koolcloud/jni"/>
+        <source-file src="src/android/BasePrintUtils.java" target-dir="src/com/print/printer/hardware/printer"/>
+        <source-file src="src/android/FormatSetting_Command.java" target-dir="src/com/print/printer/hardware/printer"/>
+        <source-file src="src/android/OpenCashBox.java" target-dir="src/com/print/printer/hardware/printer"/>
+        <source-file src="src/android/PosPrinter.java" target-dir="src/com/print/printer/hardware/printer"/>
+        <source-file src="src/android/PrinterStatus.java" target-dir="src/com/print/printer/hardware/printer"/>
+        <source-file src="src/android/PrintUtils.java" target-dir="src/com/print/printer/hardware/printer"/>
+        <source-file src="src/android/SNBCPosPrinterConfig.java" target-dir="src/com/print/printer/hardware/printer"/>
+        <source-file src="src/android/SNBCPrinter.java" target-dir="src/com/print/printer/hardware/printer"/>
+        <source-file src="src/android/SNBCPrinterCommand.java" target-dir="src/com/print/printer/hardware/printer"/>
+        <source-file src="src/android/Constants.java" target-dir="src/com/print/printer/hardware/utils"/>
+        <source-file src="src/android/Md5Utils.java" target-dir="src/com/print/printer/hardware/utils"/>
+        <source-file src="src/android/StringUtils.java" target-dir="src/com/print/printer/hardware/utils"/>
+        <source-file src="src/android/SwipeCardService.java" target-dir="src/com/print/printer/hardware"/>
+    </platform>
+    <!-- 其他平台的代码 -->
+</plugin>
